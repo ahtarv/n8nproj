@@ -1,4 +1,3 @@
-
 # 🎬 AI Content Experimentation Studio (n8n)
 
 **Rapidly generate, iterate, and A/B test short-form video content** — scripts, hooks, captions, and more — using AI + automation.
@@ -54,34 +53,6 @@ Input prompt:
 
 All tagged:  
 `tone: motivational | format: question-hook | emotion: relatable | length: short`
-
-## 🏗️ System Architecture
-
-```mermaid
-flowchart TD
-    A[Content Idea / Theme / Keyword\n+ Parameters\n(tone, platform, length, style…)] --> B[Manual Trigger\nn8n Workflow Start]
-
-    B --> C[Split / Branch\nParallel paths for:\n• Hooks\n• Scripts\n• Captions]
-
-    C --> D1[LLM Call – Hooks\n3–10 creative variants]
-    C --> D2[LLM Call – Scripts\nDifferent structures & angles]
-    C --> D3[LLM Call – Captions\nVaried tones & CTAs]
-
-    D1 --> E[Structuring Node\nClean + format output]
-    D2 --> E
-    D3 --> E
-
-    E --> F[Auto-Tagging Node\nDetect tone, emotion, format,\nlength, hook type…]
-
-    F --> G[Combine & Enrich\nCreate unified variant records]
-
-    G --> H[Output Formatter\nGenerate:\n• JSON for machines\n• Markdown for humans]
-
-    H --> I[Storage / Export\n• Local files\n• Notion database\n• Google Sheets\n• Airtable\n• Clipboard-ready drafts]
-
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style I fill:#bbf,stroke:#333,stroke-width:2px
-```
 
 ## 🚀 Quick Start
 
@@ -143,4 +114,3 @@ MIT – do whatever you want with it.
 Just don't blame me if your content goes mega-viral and you become too famous 😄
 
 Made with ❤️ for creators who love to experiment.
-```
