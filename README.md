@@ -1,84 +1,146 @@
-```markdown
-# 🎬 AI Content Experimentation & Automation Studio (n8n)
 
-## Overview
-This project is an **AI-powered content automation system** built using **n8n** to help creators and teams rapidly **generate, iterate, and experiment with short-form content**.
+# 🎬 AI Content Experimentation Studio (n8n)
 
-It combines AI tools with automation workflows to reduce manual ideation and enable fast, repeatable **content experiments** across scripts, hooks, and captions.
+**Rapidly generate, iterate, and A/B test short-form video content** — scripts, hooks, captions, and more — using AI + automation.
 
----
+Built with **n8n**, this system removes the repetitive brainstorming & rewriting drudgery so creators, marketers, and teams can run many more creative experiments in far less time.
 
-## What It Does
-- Generates **content ideas, scripts, hooks, and captions** using AI  
-- Creates **multiple variants** for quick experimentation  
-- Tags content by **tone, theme, and format**  
-- Organizes outputs into **ready-to-post drafts**  
-- Reduces repetitive creative work while keeping humans in control  
+[![n8n](https://img.shields.io/badge/automation-n8n-00A86B?style=flat&logo=n8n)](https://n8n.io)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![AI Powered](https://img.shields.io/badge/AI-powered-🔥-purple)](https://github.com/yourusername/ai-content-studio)
 
----
+## ✨ Why This Project Exists
 
-## Why This Exists
-Content teams often spend more time brainstorming, rewriting hooks, and formatting captions than actually experimenting.
+Content creators waste **hours** every week on:
 
-This system automates the **boring and repetitive parts**, allowing creators to focus on storytelling and execution.
+- Coming up with fresh hooks
+- Rewriting the same script 5–10 times
+- Crafting 20 caption variations
+- Trying different tones (funny, inspirational, sarcastic…)
 
----
+This system **automates the boring 70%** so you can focus on the fun 30%: storytelling, filming, and analyzing what actually performs.
 
-## System Architecture
+**Goal**: 10× faster experimentation without losing human creative control.
+
+## 🌟 Features
+
+- Generate **3–10 variants** of hooks, scripts & captions from one idea
+- Control **tone**, **emotion**, **length**, **format** via simple parameters
+- Auto-tag outputs (e.g. `motivational`, `storytelling`, `question-hook`, `listicle`)
+- Structured JSON + readable Markdown outputs ready for copy-paste
+- Human-in-the-loop: review & pick winners before posting
+- Pluggable storage: local files, Notion, Google Sheets, Airtable…
+
+## 📊 Example Output
+
+Input prompt:  
+"Productivity tip about beating morning procrastination"
+
+**Hook options**  
+1. "I used to lose 90 minutes every morning… until I discovered this 17-second trick"  
+2. "The brutal truth: your morning routine is killing your productivity"  
+3. "Question: Are you secretly sabotaging your day before 9 AM?"
+
+**Script variations** (30–60 sec formats)  
+- Storytelling version  
+- List format (3 reasons + fix)  
+- Contrarian / myth-busting angle
+
+**Caption styles**  
+- Emoji-heavy & punchy  
+- Thoughtful & reflective  
+- Call-to-action strong  
+- Thread-style carousel teaser
+
+All tagged:  
+`tone: motivational | format: question-hook | emotion: relatable | length: short`
+
+## 🏗️ System Architecture
+
+```mermaid
+flowchart TD
+    A[Content Idea / Theme / Keyword\n+ Parameters\n(tone, platform, length, style…)] --> B[Manual Trigger\nn8n Workflow Start]
+
+    B --> C[Split / Branch\nParallel paths for:\n• Hooks\n• Scripts\n• Captions]
+
+    C --> D1[LLM Call – Hooks\n3–10 creative variants]
+    C --> D2[LLM Call – Scripts\nDifferent structures & angles]
+    C --> D3[LLM Call – Captions\nVaried tones & CTAs]
+
+    D1 --> E[Structuring Node\nClean + format output]
+    D2 --> E
+    D3 --> E
+
+    E --> F[Auto-Tagging Node\nDetect tone, emotion, format,\nlength, hook type…]
+
+    F --> G[Combine & Enrich\nCreate unified variant records]
+
+    G --> H[Output Formatter\nGenerate:\n• JSON for machines\n• Markdown for humans]
+
+    H --> I[Storage / Export\n• Local files\n• Notion database\n• Google Sheets\n• Airtable\n• Clipboard-ready drafts]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style I fill:#bbf,stroke:#333,stroke-width:2px
 ```
 
-Content Prompt / Idea
-↓
-n8n Workflow Orchestration
-↓
-AI Generation (Scripts, Hooks, Captions)
-↓
-Variant Tagging & Structuring
-↓
-Draft Outputs (Ready-to-Post)
+## 🚀 Quick Start
 
-```
+1. Have **n8n** running (self-hosted recommended)  
+   → [Quick install guide](https://docs.n8n.io/hosting/installation/)
 
----
+2. Import the workflow  
+   → Download [`content-experiment-workflow.json`](./workflows/content-experiment-workflow.json)  
+   → n8n → **Import from File** or **Import from URL**
 
-## Example Workflow
-1. Input a content idea or theme  
-2. Generate:
-   - 3–5 hooks  
-   - short script variations  
-   - caption options  
-3. Auto-tag outputs (tone, emotion, format)  
-4. Export drafts for posting or review  
+3. Configure credentials  
+   → Add your LLM API key (OpenAI, Anthropic, Groq, Gemini…)  
+   → Optional: Notion / Google Sheets integration
 
----
+4. Run it!  
+   → Manual trigger → enter your idea + parameters  
+   → Watch variants appear in seconds
 
-## Technologies Used
-- **Automation:** n8n (self-hosted)  
-- **AI Tools:** LLM-based text generation  
-- **Data Handling:** JSON workflows  
-- **Storage:** Local files / Notion / Google Sheets (pluggable)  
+## 🛠️ Current Capabilities (v1.0)
 
----
+- Manual trigger (one idea at a time)
+- Text-only generation (hooks, scripts, captions)
+- Variant diversity via prompt engineering
+- Basic tagging logic
+- Output to local disk / Notion
 
-## Current Scope
-- Manual trigger (single idea at a time)  
-- Text-based content generation  
-- Draft creation (no auto-posting by default)  
+**No auto-posting** — human always decides what goes live.
 
-This keeps creative control **human-in-the-loop**.
+## 🔮 Roadmap & Possible Extensions
 
----
+- [ ] Schedule + batch processing (10 ideas from Google Sheet)
+- [ ] Auto-format per platform (TikTok vs Reels vs Shorts vs X)
+- [ ] Performance feedback loop (pull views/likes → feed back to prompts)
+- [ ] Auto-posting (Instagram, YouTube Shorts, TikTok, X) – with approval step
+- [ ] A/B testing helper (generate thumbnail text + caption pairs)
+- [ ] Voiceover script variant + ElevenLabs integration
+- [ ] Multi-LLM comparison mode (same prompt → see which model wins)
 
-## Possible Extensions
-- Auto-posting to Instagram / YouTube Shorts  
-- Performance tracking (views, engagement)  
-- Feedback-driven prompt iteration  
-- Multi-platform content formatting  
+## 🧩 Tech Stack
 
----
+- **Core**: n8n (self-hosted)
+- **AI**: Any OpenAI-compatible LLM (Claude, Gemini, Llama 3 via Groq/Ollama…)
+- **Data**: JSON + Markdown
+- **Optional destinations**: Notion, Google Sheets, Airtable, Supabase, files
 
-## Author Notes
-This project explores the intersection of **AI tools, automation, and storytelling**.
+## 🙌 Contributing
 
-The goal is not to replace creativity, but to **accelerate experimentation**.
+Ideas, bug fixes, new prompt templates, storage nodes, or platform formatters are very welcome!
+
+1. Fork & branch (`feat/amazing-new-variant-generator`)
+2. Add / improve
+3. Open PR with clear description
+
+Even small things help: better prompt examples, UI screenshots, or workflow diagram updates.
+
+## ⚖️ License
+
+MIT – do whatever you want with it.  
+Just don't blame me if your content goes mega-viral and you become too famous 😄
+
+Made with ❤️ for creators who love to experiment.
 ```
